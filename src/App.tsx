@@ -14,7 +14,7 @@ export default function App() {
     <NavBar/>
     <Routes>
       
-      <Route path='/' >
+      <Route path='/Nirgunawebapp' >
         <Route index element={<Home/>}/>
         <Route path='ide' element={<IDE/>}/>
         <Route path='home' element={<Home/>}/>

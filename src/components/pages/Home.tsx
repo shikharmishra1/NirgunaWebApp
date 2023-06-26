@@ -102,7 +102,7 @@ export default function Home()
                     <div className='text-center mt-5'>OR</div>
                     <div className='rounded-lg mt-5 sm:w-full w-screen h-[600px]' ><NirgunaEditor defaultValue={code.current} onCodeValue={handleCode} /></div>
                     <div onClick={()=>{
-                        codeNav('/ide/', {state: {code: code.current}})
+                        codeNav('/Nirgunawebapp/ide/', {state: {code: code.current}})
                     }} className='flex justify-center'><button className='border-2 text-orange-600 py-2 px-8 hover:bg-teal-800 bg-opacity-50 rounded-lg bg-teal-800 mt-5 text-bold '>Run</button></div>
                 </div>
                 
