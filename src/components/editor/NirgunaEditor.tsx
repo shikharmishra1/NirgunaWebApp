@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import  Editor, {useMonaco} from '@monaco-editor/react';
-export default function NirgunaEditor() { 
+import {evaluate} from 'nirguna-interpreter/runtime/interpreter'
+export default function NirgunaEditor(props:{onCodeValue?: (value: string | undefined) => void, defaultValue?: string}) { 
   const monaco = useMonaco();
   const [showEditor, setShowEditor] = React.useState(false);
+  const [code, setCode] = useState('')
+  const editorRef = useRef<any>(null);
   
   useEffect(()=>{
     if(monaco) 
     {
+
       setShowEditor(true);
     monaco.editor.defineTheme("myCustomTheme", {
       base: "vs-dark", // can also be vs-dark or hc-black
@@ -98,15 +102,7 @@ export default function NirgunaEditor() {
           [/'[^\\']'/, 'string'],
           [/(')(@escapes)(')/, ['string','string.escape','string']],
           [/'/, 'string.invalid'],
-
           
-
-          
-          
-
-          
-          
-
         ],
         string:[
           [/[^\\"]+/,  'string'],
@@ -160,5 +156,17 @@ export default function NirgunaEditor() {
   }, [monaco]);
   
 
-  return showEditor?<Editor width="70vw" height="90vh" defaultValue="// some comment" theme='myCustomTheme' language='nirguna' />:<div>loading...</div>;
+  return showEditor?<Editor className='rounded-4xl'  onMount={
+    (v, e)=>{
+      if(props.onCodeValue)
+      {
+        props.onCodeValue(v.getValue());
+      }
+    }
+  } onChange={(v, e)=>{
+    if(props.onCodeValue)
+    {
+      props.onCodeValue(v);
+    }
+  }}  defaultValue={props.defaultValue} theme='myCustomTheme' language='nirguna' />:<div>loading...</div>;
 }
