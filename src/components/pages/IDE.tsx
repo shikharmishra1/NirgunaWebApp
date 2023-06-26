@@ -1,14 +1,13 @@
-import { ReactNode, useRef, useState, useEffect } from "react";
+import { ReactNode, useRef, useState } from "react";
 import NirgunaEditor from "../editor/NirgunaEditor";
-import NavBar from "../NavBar";
 import { run } from "nirguna-interpreter/main";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { useLocation } from "react-router-dom";
 
 export default function IDE()
 {
-    const [showOutput, setShowOutput] = useState(false)
-    const [fullScreen, setFullScreen] = useState(false)
+    
+    
     const [output, setOutput] = useState<ReactNode>()
     
     let code = useRef(``);
@@ -111,7 +110,7 @@ export default function IDE()
             )}
             </pre>
           </div>)
-          setShowOutput(true)
+          
         
 
         }}>Run</button>

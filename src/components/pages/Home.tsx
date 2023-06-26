@@ -1,8 +1,4 @@
-import logo from '../../assets/nirguna_logo.jpg'
-import nirguna from '../../assets/nirguna.png'
-import { Link, Navigate, useNavigate, useNavigation } from 'react-router-dom'
-import IDE from './IDE'
-import { Editor } from '@monaco-editor/react'
+import { Link, useNavigate } from 'react-router-dom'
 import NirgunaEditor from '../editor/NirgunaEditor'
 import { useRef } from 'react'
 
@@ -88,7 +84,7 @@ export default function Home()
                         <div className='flex self-center p-[0.10rem] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500'>
                             <div className='p-4 flex  bg-gray-700'>
                                 <div> &gt; npm i nirguna-interpreter</div>
-                                <button onClick={(e)=>{
+                                <button onClick={()=>{
                                     navigator.clipboard.writeText("npm i nirguna-interpreter")
                                     
                                     }} className="block ml-2 bg-gray-700 transition hover:scale-110 active:scale-100 active:transition-none" title="Copy to clipboard">

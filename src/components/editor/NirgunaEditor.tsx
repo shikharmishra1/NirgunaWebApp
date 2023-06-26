@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
-import  Editor, {useMonaco} from '@monaco-editor/react';
-import {evaluate} from 'nirguna-interpreter/runtime/interpreter'
+import React, { useEffect } from 'react';
+import Editor, { useMonaco } from '@monaco-editor/react';
 export default function NirgunaEditor(props:{onCodeValue?: (value: string | undefined) => void, defaultValue?: string}) { 
   const monaco = useMonaco();
   const [showEditor, setShowEditor] = React.useState(false);
-  const [code, setCode] = useState('')
-  const editorRef = useRef<any>(null);
+  
   
   useEffect(()=>{
     if(monaco) 
@@ -157,13 +155,13 @@ export default function NirgunaEditor(props:{onCodeValue?: (value: string | unde
   
 
   return showEditor?<Editor className='rounded-4xl'  onMount={
-    (v, e)=>{
+    (v)=>{
       if(props.onCodeValue)
       {
         props.onCodeValue(v.getValue());
       }
     }
-  } onChange={(v, e)=>{
+  } onChange={(v)=>{
     if(props.onCodeValue)
     {
       props.onCodeValue(v);

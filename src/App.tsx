@@ -1,10 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from 'react'
-import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react'
+
 import './App.css'
-import {BrowserRouter, Router, Route, Routes, Outlet} from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import IDE from './components/pages/IDE'
 import Home from './components/pages/Home'
-import Layout from './Layout'
 import NavBar from './components/NavBar'
 
 
@@ -17,6 +15,7 @@ export default function App() {
     <Routes>
       
       <Route path='/' >
+        <Route index element={<Home/>}/>
         <Route path='ide' element={<IDE/>}/>
         <Route path='home' element={<Home/>}/>
         
