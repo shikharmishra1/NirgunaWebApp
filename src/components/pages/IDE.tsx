@@ -1,7 +1,7 @@
 import { ReactNode, useRef, useState } from "react";
 import NirgunaEditor from "../editor/NirgunaEditor";
 import { run } from "nirguna-interpreter/main";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+
 import { useLocation } from "react-router-dom";
 
 export default function IDE()
@@ -80,19 +80,16 @@ export default function IDE()
 
 
     return (
-        <div className='flex flex-col'>
-      
-      <div className='flex gap-2  flex-col sm:flex-row sm:justify-between'>
-        <div className='sm:w-[74%] h-60 sm:h-[90vh]'><NirgunaEditor defaultValue={stateCode} onCodeValue={handleSubmitValue}/></div>
-        <div className='flex flex-col'>
-        <button className='rounded-lg hover:bg-slate-700  bg-gray-500 p-2 px-6 border-2' onClick={()=>{
+<div className='flex flex-col'>
+  <div className='flex gap-2  flex-col sm:flex-row sm:justify-between'>
+    <div className='sm:w-[74%] h-60 sm:h-[90vh]'><NirgunaEditor defaultValue={stateCode} onCodeValue={handleSubmitValue}/></div>
+      <div className='flex flex-col'>
+        <div className='bg-gradient-to-r p-[0.1rem] flex flex-col from-pink-500 via-purple-500 to-indigo-500'>
+          <button className=' hover:bg-slate-700  bg-slate-800 p-2 px-6' onClick={()=>{
             const customLog = (...args: any[]) => {
             
             myLogStorage.push(args);
-            // Custom logic for handling the log message
-            // ...
-          
-            // Call the original console.log method with the arguments
+            
             consoleLog.apply(console, args);
           };
           const consoleLog = console.log;
@@ -101,11 +98,11 @@ export default function IDE()
           run(code.current);
           setOutput(
             
-          <div className=' flex flex-grow  h-[40vh] w-auto '>
+          <div className=' flex flex-grow w-auto '>
             <pre className ='whitespace-pre'>
           {myLogStorage.map((log, index) => 
             
-              <p key={index}>{log}</p>
+              <p className="text-transparent bg-clip-text bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500" key={index}>{log}</p>
               
             )}
             </pre>
@@ -113,21 +110,19 @@ export default function IDE()
           
         
 
-        }}>Run</button>
+            }}>Run</button></div>
         
-            
-            <div className='h-[84vh] sm:w-[25vw] rounded-lg bg-slate-300 bg-opacity-10 overflow-x-scroll overflow-y-scroll'>
-            <TransformWrapper  maxScale={40} minScale={.4}>
-          <TransformComponent >
+          <div className='z-[100]  bg-gradient-to-r p-[0.1rem] flex flex-col from-pink-500/20 via-purple-500/20 to-indigo-500/20'>      
+            <div className='h-[84vh] sm:w-[25vw] rounded-lg bg-opacity-10 overflow-x-scroll overflow-y-scroll'>
               <div className='h-screen '>
+              
+
                 {output}
               </div>
-          </TransformComponent>
-        </TransformWrapper>
-
-              </div>
+          </div>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
     )
 }

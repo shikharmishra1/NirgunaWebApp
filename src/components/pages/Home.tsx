@@ -66,8 +66,8 @@ export default function Home()
         code.current = value || ''
     }
     return (
-        <div className="flex flex-col">
-            <img className="z-[-100] absolute h-[148vh] w-screen object-cover" src='https://th.bing.com/th/id/OIG.CnfXSnuHkXO0Ex4BoQNN?pid=ImgGn'/>
+        <div className="flex flex-col md:flex bg-gradient-to-tr from-gray-700 via-gray-800  to-gray-950 ">
+           {/* <img className="z-[-100] absolute h-[148vh] w-screen object-cover" src='https://th.bing.com/th/id/OIG.CnfXSnuHkXO0Ex4BoQNN?pid=ImgGn'/>*/}
             <div className='flex  sm:max-w-screen  self-center mt-[15vh]  font-mono '>
                 <div className='flex flex-col '>
                     <div className='text-center max-w-4xl text-6xl mb-4 sm:text-6xl'>
@@ -100,10 +100,12 @@ export default function Home()
                         
                     </div>
                     <div className='text-center mt-5'>OR</div>
-                    <div className='rounded-lg mt-5 sm:w-full w-screen h-[600px]' ><NirgunaEditor defaultValue={code.current} onCodeValue={handleCode} /></div>
+                    <div className=' p-[0.10rem] mt-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500'>
+                        <div className='rounded-lg  sm:w-full w-screen h-[600px]' ><NirgunaEditor defaultValue={code.current} onCodeValue={handleCode} /></div>
+                    </div>
                     <div onClick={()=>{
                         codeNav('/Nirgunawebapp/ide/', {state: {code: code.current}})
-                    }} className='flex justify-center'><button className='border-2 text-orange-600 py-2 px-8 hover:bg-teal-800 bg-opacity-50 rounded-lg bg-teal-800 mt-5 text-bold '>Run</button></div>
+                    }} className='flex justify-center'><button className='border-2 text-orange-600 py-2 px-8 hover:bg-teal-800  rounded-lg  mt-5 text-bold '>Run</button></div>
                 </div>
                 
             </div>
